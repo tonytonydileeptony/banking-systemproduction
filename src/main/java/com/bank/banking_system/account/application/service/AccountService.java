@@ -1,4 +1,4 @@
-package com.bank.banking_system.service;
+package com.bank.banking_system.account.application.service;
 
 
 

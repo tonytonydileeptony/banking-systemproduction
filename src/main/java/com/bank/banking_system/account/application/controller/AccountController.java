@@ -1,9 +1,9 @@
 package com.bank.banking_system.account.application.controller;
 
 import com.bank.banking_system.account.application.dto.AccountRequest;
-import com.bank.banking_system.account.application.dto.TransferRequest;
+import com.bank.banking_system.transfer.service.TransferRequest;
 import com.bank.banking_system.account.application.model.AccountEntity;
-import com.bank.banking_system.service.AccountService;
+import com.bank.banking_system.account.application.service.AccountService;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
