@@ -1,4 +1,4 @@
-package com.bank.banking_system.controller;
+package com.bank.banking_system.account.application.controller;
 
 import lombok.Getter;
 import org.springframework.web.bind.annotation.GetMapping;

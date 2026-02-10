@@ -1,0 +1,155 @@
+What is System Design?
+
+System Design = The process of designing how a software system works internally to handle real-world scale, performance, failures, and users.
+
+It answers:
+
+How will the system be structured?
+
+How will components communicate?
+
+How will it scale to millions of users?
+
+How will data be stored safely?
+
+How will failures be handled?
+
+Simple Definition
+
+System Design is about building a system that is scalable, reliable, secure, and efficient.
+
+Example — Banking Application
+
+When designing a banking system, we must decide:
+
+How accounts are stored
+
+How money transfer works safely
+
+How to prevent double withdrawal
+
+How system handles 1 lakh transactions/sec
+
+How services communicate
+
+How data consistency is maintained
+
+This entire planning = System Design
+
+Main Goals of System Design
+
+Scalability → Handle growth (100 → 1M users)
+
+Reliability → System should not crash
+
+Availability → System should be up 24/7
+
+Performance → Fast response (<200ms)
+
+Consistency → Correct data (very important in banking)
+
+Security → Prevent fraud / data leaks
+
+Maintainability → Easy to update & extend
+
+Two Types of Design
+1. High-Level Design (HLD)
+
+Big picture architecture.
+
+Example:
+
+API Gateway
+
+Microservices
+
+Database
+
+Load Balancer
+
+Cache
+
+Messaging (Kafka)
+
+Focus: System components & communication
+
+2. Low-Level Design (LLD)
+
+Internal logic & classes.
+
+Example:
+
+Account entity
+
+Transaction service
+
+Transfer flow
+
+Locking mechanism
+
+DB schema
+
+Focus: Code-level design
+
+System Design vs Coding
+Coding	System Design
+Writes logic	Designs system
+Small scope	Large scale
+Classes & methods	Services & architecture
+Single user	Millions of users
+Real-Life Example
+
+Without Design:
+
+Two users withdraw money simultaneously
+
+Balance becomes negative ❌
+
+With Proper System Design:
+
+Locking / Transaction used
+
+Correct balance maintained ✔
+
+Where System Design is Used
+
+Banking systems
+
+Payment apps (UPI, Paytm)
+
+E-commerce (Amazon, Flipkart)
+
+Social media (Instagram, Facebook)
+
+Ride apps (Uber, Ola)
+
+Streaming (Netflix, YouTube)
+
+Interview Questions
+
+Q1: What is System Design?
+Designing scalable, reliable, and efficient systems.
+
+Q2: Difference between HLD & LLD?
+HLD = architecture, LLD = internal implementation.
+
+Q3: Why important for backend engineers?
+To build systems that handle real-world scale & failures.
+
+In Your Project (Important)
+
+You are designing:
+
+Monolith → Microservices
+
+Account Service
+
+Transaction Service
+
+Safe money transfer
+
+Concurrency control
+
+Idempotency
+
+High-scale architecture
