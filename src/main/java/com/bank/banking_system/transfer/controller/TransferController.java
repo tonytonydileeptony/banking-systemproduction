@@ -2,8 +2,9 @@ package com.bank.banking_system.transfer.controller;
 
 
 
-import com.bank.banking_system.transfer.service.TransferRequest;
+import com.bank.banking_system.transfer.dto.TransferRequest;
 import com.bank.banking_system.transfer.service.TransferService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,10 +17,15 @@ public class TransferController {
         this.transferService = transferService;
     }
 
+
+
     @PostMapping
-    public String transfer(@RequestBody TransferRequest request) {
-        transferService.transfer(request);
-        return "Transfer Successful";
+    public ResponseEntity<String> transfer(
+            @RequestBody TransferRequest req) {
+
+        return ResponseEntity.ok(
+                transferService.transfer(req));
     }
+
 }
 

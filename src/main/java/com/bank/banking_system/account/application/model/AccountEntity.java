@@ -2,9 +2,9 @@ package com.bank.banking_system.account.application.model;
 
 
 import com.bank.banking_system.account.application.exception.InsufficientBalanceException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Entity
 @Table(name = "accounts")
@@ -15,21 +15,8 @@ public class AccountEntity {
 
 
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     private String name;
-    @Column(nullable = false)
-    private String userId;
 
     @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal balance;
@@ -38,27 +25,28 @@ public class AccountEntity {
     @Column(nullable = false)
     private AccountStatus status;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+    @Version
+    private Long version;
     // JPA requires default constructor
     public AccountEntity() {}
 
 
 
     // Getters & Setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getAccountId() {
         return accountId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public AccountStatus getStatus() {
-        return status;
     }
 
     public void setBalance(BigDecimal balance) {
@@ -96,4 +84,8 @@ public class AccountEntity {
         }
     }
 
+
+public BigDecimal getBalance() { return balance; } public AccountStatus getStatus() { return status; }
+public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 }

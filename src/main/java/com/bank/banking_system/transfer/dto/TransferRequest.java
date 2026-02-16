@@ -1,11 +1,21 @@
-package com.bank.banking_system.transfer.service;
+package com.bank.banking_system.transfer.dto;
 
 import java.math.BigDecimal;
 
 public class TransferRequest {
-    public Long fromAccountId;
-    public Long toAccountId;
-    public BigDecimal amount;
+
+    private String requestId;
+    private Long fromAccountId;
+    private Long toAccountId;
+    private BigDecimal amount;
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
 
     public Long getFromAccountId() {
         return fromAccountId;
@@ -30,4 +40,7 @@ public class TransferRequest {
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
+
+    // getters & setters
 }
+

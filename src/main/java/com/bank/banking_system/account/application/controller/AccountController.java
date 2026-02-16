@@ -1,9 +1,10 @@
 package com.bank.banking_system.account.application.controller;
 
 import com.bank.banking_system.account.application.dto.AccountRequest;
-import com.bank.banking_system.transfer.service.TransferRequest;
 import com.bank.banking_system.account.application.model.AccountEntity;
 import com.bank.banking_system.account.application.service.AccountService;
+import com.bank.banking_system.transfer.dto.TransferRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -14,7 +15,7 @@ import java.util.List;
 public class AccountController {
 
     private final AccountService service;
-
+ @Autowired
     public AccountController(AccountService service) {
         this.service = service;
     }
@@ -22,8 +23,10 @@ public class AccountController {
     @PostMapping
     public AccountEntity createAccount(@RequestBody AccountRequest request) {
         AccountEntity account = new AccountEntity();
-        account.setName(request.name);
-        account.setBalance(request.balance);
+        account.setName(request.getName());
+        account.setBalance(request.getBalance());
+        account.setStatus(request.getStatus());
+        account.setUser(service.getUser(request.getUserId()));
         return service.createAccount(account);
     }
 
@@ -49,7 +52,7 @@ public class AccountController {
 
     @PostMapping("/transfer")
     public String transfer(@RequestBody TransferRequest request) {
-        service.transfer(request.fromAccountId, request.toAccountId, request.amount);
+        service.transfer(request.getFromAccountId(), request.getToAccountId(), request.getAmount());
         return "Transfer Successful";
     }
 }
