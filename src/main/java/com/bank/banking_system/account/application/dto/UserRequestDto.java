@@ -1,6 +1,6 @@
 package com.bank.banking_system.account.application.dto;
 
-public class UserRequest {
+public class UserRequestDt0 {
     private String name;
     private String email;
     private String password;
