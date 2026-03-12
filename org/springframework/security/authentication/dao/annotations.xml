@@ -1,0 +1,5 @@
+<root>
+    <item name='org.springframework.security.authentication.dao.DaoAuthenticationProvider'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>

@@ -1,4 +1,11 @@
 package com.bank.banking_system.account.application.dto;
 
-public class ResponseDto {
+import lombok.Data;
+
+@Data
+public class UserResponseDto {
+
+    private Long id;
+    private String name;
+    private String email;
 }

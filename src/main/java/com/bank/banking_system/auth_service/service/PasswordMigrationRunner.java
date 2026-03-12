@@ -1,4 +1,4 @@
-package com.bank.banking_system.account.application.service;
+package com.bank.banking_system.auth_service.service;
 
 import com.bank.banking_system.account.application.model.User;
 import com.bank.banking_system.account.application.repository.UserRepository;

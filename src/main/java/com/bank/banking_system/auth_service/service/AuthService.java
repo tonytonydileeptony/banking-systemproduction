@@ -1,6 +1,6 @@
-package com.bank.banking_system.account.application.service;
+package com.bank.banking_system.auth_service.service;
 
-import com.bank.banking_system.account.application.dto.UserRequest;
+import com.bank.banking_system.account.application.dto.UserRequestDto;
 import com.bank.banking_system.account.application.model.User;
 import com.bank.banking_system.account.application.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class AuthService {
         this.authenticationManager = authenticationManager;
     }
 //eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaWxlZXBAZ21haWwuY29tIiwiaWF0IjoxNzcwOTg3MDUwLCJleHAiOjE3NzEwMjMwNTB9.6zrJRcd7Bt763qFiKBlfAUnAPZqTlTiU94gVzj7Psiw
-    public String register(UserRequest req) {
+    public String register(UserRequestDto req) {
 
         if (userRepo.findByName(req.getName()).isPresent()) {
             throw new RuntimeException("User already exists");
@@ -42,7 +42,7 @@ public class AuthService {
 
         return "User registered successfully";
     }
-    public String login(UserRequest request) {
+    public String login(UserRequestDto request) {
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

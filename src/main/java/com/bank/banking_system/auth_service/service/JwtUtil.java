@@ -1,4 +1,4 @@
-package com.bank.banking_system.account.application.service;
+package com.bank.banking_system.auth_service.service;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

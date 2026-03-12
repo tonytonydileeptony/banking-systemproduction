@@ -7,7 +7,11 @@ import com.bank.banking_system.account.application.model.User;
 import com.bank.banking_system.account.application.repository.AccountRepository;
 import com.bank.banking_system.account.application.repository.UserRepository;
 
+import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DeadlockLoserDataAccessException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -26,6 +30,19 @@ public class AccountService {
     AccountRepository accountRepository;
     @Autowired
     private final UserRepository userRepository ;
+
+
+    public boolean isValid(Long accountId,
+                           ConstraintValidatorContext context) {
+
+        if (accountId == null) return true;
+
+        try {
+            return accountRepository.existsById(accountId);
+        } catch (Exception e) {
+            return false;
+        }
+    }
     // Temporary in-memory store (replace with DB later)
     private final Map<String, AccountEntity> accountStore = new ConcurrentHashMap<>();
 
@@ -46,7 +63,9 @@ public class AccountService {
     }
 
     // Get account
+    @Cacheable(value = "accounts", key = "#accountId")
     public AccountEntity getAccount(Long accountId) {
+        System.out.println("Fetching from DB...");
         return accountRepository.findById(accountId)
                 .orElseThrow(() -> new IllegalArgumentException("Account not found"));
     }
@@ -119,5 +138,14 @@ public class AccountService {
 
         throw new RuntimeException("Failed after retries");
     }
+    @CachePut(value = "accounts", key = "#account.accountId")
+    public AccountEntity updateAccount(AccountEntity account) {
 
+        return accountRepository.save(account);
+    }
+    @CacheEvict(value = "accounts", key = "#accountId")
+    public void deleteAccount(Long accountNumber) {
+
+        accountRepository.deleteByAccountId(accountNumber);
+    }
 }

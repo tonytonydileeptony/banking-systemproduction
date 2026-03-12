@@ -2,13 +2,20 @@ package com.bank.banking_system.account.application.model;
 
 
 import com.bank.banking_system.account.application.exception.InsufficientBalanceException;
+import com.bank.banking_system.transfer_service.model.TransactionEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "accounts")
-public class AccountEntity {
+public class AccountEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountId;
@@ -31,6 +38,8 @@ public class AccountEntity {
     private User user;
     @Version
     private Long version;
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<TransactionEntity> transactions = new ArrayList<>();
     // JPA requires default constructor
     public AccountEntity() {}
 

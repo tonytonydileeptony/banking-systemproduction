@@ -1,15 +1,19 @@
-package com.bank.banking_system.transfer.model;
+package com.bank.banking_system.transfer_service.model;
 
+import com.bank.banking_system.account.application.model.AccountEntity;
+import com.bank.banking_system.transfer_service.dto.Status;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transactions",
         uniqueConstraints = @UniqueConstraint(columnNames = "transactionId"))
-public class TransactionEntity {
 
+public class TransactionEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,19 +26,18 @@ public class TransactionEntity {
 
     @Enumerated(EnumType.STRING)
     private Status status;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    private AccountEntity account;
     private LocalDateTime createdAt;
 
-    public enum Status {
-        PENDING, SUCCESS, FAILED, REVERSED
-    }
 
     // getters & setters
 
 
 
-    public Long getId() {
-        return id;
+    public String getId() {
+        return transactionId;
     }
 
     public void setId(Long id) {

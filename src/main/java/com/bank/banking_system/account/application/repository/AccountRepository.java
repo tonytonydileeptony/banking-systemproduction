@@ -3,11 +3,13 @@ package com.bank.banking_system.account.application.repository;
 
 import com.bank.banking_system.account.application.model.AccountEntity;
 import jakarta.persistence.LockModeType;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
@@ -343,5 +345,14 @@ Kafka event safety
     @Query("SELECT a FROM AccountEntity a WHERE a.accountId = :id")
     Optional<AccountEntity> findByIdForUpdate(@Param("id") Long id);
 
+    @Query("SELECT a FROM AccountEntity a LEFT JOIN FETCH a.transactions")
+    List<AccountEntity> findAllWithTransactions();
+
+    //🟢 Step 3 — Entity Graph (Better than Fetch Join)
+    @EntityGraph(attributePaths = "transactions")
+    @Query("SELECT a FROM AccountEntity a")
+    List<AccountEntity> findAllUsingEntityGraph();
+
+    void deleteByAccountId(Long accountId);
 }
 

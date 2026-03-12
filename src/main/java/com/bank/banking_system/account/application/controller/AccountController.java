@@ -3,7 +3,7 @@ package com.bank.banking_system.account.application.controller;
 import com.bank.banking_system.account.application.dto.AccountRequest;
 import com.bank.banking_system.account.application.model.AccountEntity;
 import com.bank.banking_system.account.application.service.AccountService;
-import com.bank.banking_system.transfer.dto.TransferRequest;
+import com.bank.banking_system.transfer_service.dto.TransferRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

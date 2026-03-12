@@ -1,14 +1,15 @@
-package com.bank.banking_system.transfer.repository;
+package com.bank.banking_system.transfer_service.repository;
 
-import com.bank.banking_system.transfer.model.TransactionEntity;
+import com.bank.banking_system.transfer_service.model.TransactionEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
 public interface TransactionRepository
-        extends JpaRepository<TransactionEntity, Long> {
+        extends JpaRepository<TransactionEntity, Long>, JpaSpecificationExecutor<TransactionEntity> {
 
 
     boolean existsByTransactionId(String transactionId);

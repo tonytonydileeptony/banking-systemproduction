@@ -1,5 +1,6 @@
-package com.bank.banking_system.account.application.service;
+package com.bank.banking_system.auth_service.service;
 
+import com.bank.banking_system.account.application.service.CustomUserDetailsService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import org.springframework.security.authentication.*;

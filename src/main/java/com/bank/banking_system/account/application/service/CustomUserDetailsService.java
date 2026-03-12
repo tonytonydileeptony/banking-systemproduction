@@ -18,10 +18,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        System.out.println("Login email: " + email);
 
         User user = userRepository.findByName(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
+        System.out.println("Login email: " + email);
+        System.out.println("DB password: " + user.getPassword());
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getEmail())
                 .password(user.getPassword())

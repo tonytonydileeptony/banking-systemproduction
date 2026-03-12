@@ -1,14 +1,12 @@
-package com.bank.banking_system.account.application.controller;
+package com.bank.banking_system.auth_service.controller;
 
-import com.bank.banking_system.account.application.dto.UserRequest;
-import com.bank.banking_system.account.application.service.AuthService;
+import com.bank.banking_system.account.application.dto.UserRequestDto;
+import com.bank.banking_system.auth_service.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
@@ -21,11 +19,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestBody UserRequest req) {
+    public String register(@RequestBody UserRequestDto req) {
         return service.register(req);
     }
     @PostMapping("/login")
-    public String login(@RequestBody UserRequest request) {
+    public String login(@RequestBody UserRequestDto request) {
+        System.out.println(request.getEmail());
         return service.login(request);
     }
 }

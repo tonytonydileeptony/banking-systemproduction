@@ -15,11 +15,17 @@ import java.util.List;
 
 
 @Service
-@RequiredArgsConstructor
+
 public class UserService {
 
     private final UserRepository repository;
     private final UserMapper mapper;
+
+    public UserService( UserMapper mapper,UserRepository repository) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
+
 
     public UserResponseDto createUser(UserRequestDto requestDto) {
 
